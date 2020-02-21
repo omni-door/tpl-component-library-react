@@ -5,7 +5,8 @@ import {
   PKJTOOL,
   STYLE,
   STRATEGY,
-  DEVSERVER
+  DEVSERVER,
+  MARKDOWN
 } from '@omni-door/tpl-utils';
 import {
   babel as babelConfigJs,
@@ -369,7 +370,7 @@ export function newTpl ({
   componentName: string;
   stylesheet: STYLE;
   newPath: string;
-  md: 'md' | 'mdx';
+  md: MARKDOWN;
   type: 'fc' | 'cc';
   tpls?: (tpls: TPLS_NEW) => TPLS_NEW_RETURE;
 }) {
