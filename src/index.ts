@@ -144,7 +144,7 @@ async function init ({
   const testFrame = 'jest';
   const ts = true;
   const build = 'tsc';
-  const project_type = 'spa-react';
+  const project_type = 'component-library-react';
 
   // default files
   const content_omni = tpl.omni({

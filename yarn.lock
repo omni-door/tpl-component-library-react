@@ -134,10 +134,10 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
 
-"@omni-door/tpl-common@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@omni-door/tpl-common/-/tpl-common-0.0.4.tgz#9e8d9b06bf1302b580765c4879c60aafce274fb7"
-  integrity sha512-odszdqSOD94wAzp2WnAoSLnm4y4l7WojWzU529MbHI8FU8F9XHHzkVcy17coYrR8kaLaoPViOxelmXLTGlvlMA==
+"@omni-door/tpl-common@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@omni-door/tpl-common/-/tpl-common-0.0.5.tgz#b6bb7c64aec80e7092ebbc82be072af12c0833be"
+  integrity sha512-DltSW1p2nm3Ue6SmnnLJzk9B0sXbh3coVKXMtpt7807BTalMATB1B8GcbU9RijjJCrRqCh4mcWdkDFKh+DmJew==
   dependencies:
     "@types/express" "^4.17.2"
     "@types/http-proxy-middleware" "^0.19.3"
