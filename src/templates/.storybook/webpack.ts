@@ -1,4 +1,4 @@
-import { STYLE } from '@omni-door/tpl-common';
+import { STYLE } from '@omni-door/tpl-utils';
 
 export default function (config: {
   ts: boolean;

@@ -6,7 +6,7 @@ import {
   STYLE,
   STRATEGY,
   DEVSERVER
-} from '@omni-door/tpl-common';
+} from '@omni-door/tpl-utils';
 import {
   babel as babelConfigJs,
   commitlint as commitlintConfigJs,
@@ -30,9 +30,20 @@ import {
   bisheng,
   posts_readme,
   mdx,
+  component_class,
+  component_functional,
+  component_index,
+  component_readme,
+  component_stylesheet,
+  component_test,
+  component_mdx,
+  component_stories,
   TPLS_INITIAL,
   TPLS_INITIAL_FN,
-  TPLS_INITIAL_RETURE
+  TPLS_INITIAL_RETURE,
+  TPLS_NEW,
+  TPLS_NEW_FN,
+  TPLS_NEW_RETURE
 } from './templates';
 import { dependencies, devDependencies } from './configs/dependencies';
 import {
@@ -66,6 +77,14 @@ const default_tpl_list = {
   bisheng,
   posts_readme,
   mdx,
+  component_class,
+  component_functional,
+  component_index,
+  component_readme,
+  component_stylesheet,
+  component_test,
+  component_mdx,
+  component_stories
 };
 
 export type ResultOfDependencies = string[] | { add?: string[]; remove?: string[]; };
@@ -76,6 +95,7 @@ export type InitOptions = {
   initPath: string;
   configFileName?: string;
   devServer: DEVSERVER;
+  ts: boolean;
   test: boolean;
   eslint: boolean;
   commitlint: boolean;
@@ -96,6 +116,7 @@ async function init ({
   initPath,
   configFileName = 'omni.config.js',
   devServer,
+  ts,
   test,
   eslint,
   commitlint,
@@ -141,30 +162,25 @@ async function init ({
     logWarn('生成自定义模板出错，将全部使用默认模板进行初始化！(The custom template generating occured error, all will be initializated with the default template!)');
   }
   const tpl = { ...default_tpl_list, ...custom_tpl_list };
-  const testFrame = 'jest';
-  const ts = true;
-  const build = 'tsc';
   const project_type = 'component-library-react';
 
   // default files
   const content_omni = tpl.omni({
     project_type,
-    build,
     ts,
     test,
-    testFrame,
     eslint,
     commitlint,
     style,
     stylelint,
-    mdx: false
+    mdx: devServer === 'docz'
   });
   const content_pkg = tpl.pkj({
     project_type,
     name,
     ts,
     devServer,
-    testFrame,
+    test,
     eslint,
     commitlint,
     stylelint,
@@ -174,22 +190,22 @@ async function init ({
   const content_indexTpl = tpl.source_index();
 
   // tsconfig
-  const content_ts = ts && tpl.tsconfig({ project_type });
+  const content_ts = ts && tpl.tsconfig();
 
   // d.ts files
   const content_d = ts && tpl.source_d({ style });
 
   // test files
-  const content_jest = testFrame === 'jest' && tpl.jest({ ts });
+  const content_jest = test && tpl.jest({ ts });
 
   // lint files
-  const content_eslintrc = eslint && tpl.eslint({ project_type, ts });
+  const content_eslintrc = eslint && tpl.eslint({ ts });
   const content_eslintignore = eslint && tpl.eslintignore();
   const content_stylelint = stylelint && tpl.stylelint({ style });
   const content_commitlint = commitlint && tpl.commitlint({ name });
 
   // build files
-  const content_babel = devServer === 'storybook' && tpl.babel({ project_type, ts });
+  const content_babel = devServer === 'storybook' && tpl.babel({ ts });
 
   // server files
   const content_bisheng = devServer === 'bisheng' && tpl.bisheng({ name });
@@ -287,7 +303,7 @@ async function init ({
     commitlint,
     style,
     stylelint,
-    test: !!testFrame,
+    test,
     devServer
   });
 
@@ -339,6 +355,62 @@ async function init ({
     installServerDevCli,
     installCustomDevCli
   ], success, error, isSlient);
+}
+
+export function newTpl ({
+  ts,
+  componentName,
+  stylesheet,
+  newPath,
+  md,
+  type
+}: {
+  ts: boolean;
+  componentName: string;
+  stylesheet: STYLE;
+  newPath: string;
+  md: 'md' | 'mdx';
+  type: 'fc' | 'cc';
+}) {
+  const tpl = { ...default_tpl_list };
+  // component tpl
+  const content_index = tpl.component_index({ ts, componentName });
+  const content_cc = type === 'cc' && tpl.component_class({ ts, componentName, style: stylesheet });
+  const content_fc = type === 'fc' && tpl.component_functional({ ts, componentName, style: stylesheet });
+  const content_readme = md === 'md' && tpl.component_readme({ componentName });
+  const content_mdx = md === 'mdx' && tpl.component_mdx({ componentName });
+  const content_stories = tpl.component_stories({ componentName });
+  const content_style = stylesheet && tpl.component_stylesheet({ componentName });
+  const content_test = tpl.component_test({ componentName });
+
+  const pathToFileContentMap = {
+    [`index.${ts ? 'ts' : 'js'}`]: content_index,
+    [`${componentName}.${ts ? 'tsx' : 'jsx'}`]: content_cc,
+    [`${componentName}.${ts ? 'tsx' : 'jsx'}`]: content_fc,
+    [`style/${componentName}.${stylesheet}`]: content_style,
+    [`__test__/index.test.${
+      ts
+        ? 'tsx'
+        : 'jsx'
+    }`]: content_test,
+    [`__stories__/index.stories.${
+      ts
+        ? 'tsx'
+        : 'jsx'
+    }`]: content_stories,
+    'README.md': content_readme,
+    'README.mdx': content_mdx,
+  }
+  /**
+   * create files
+   */
+  const file_path = (p: string) => path.resolve(newPath, p);
+  for (const p in pathToFileContentMap) {
+    output_file({
+      file_path: file_path(p),
+      file_content: pathToFileContentMap[p]
+    });
+  }
 }
 
 export default init;
