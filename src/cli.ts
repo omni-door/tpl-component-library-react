@@ -16,6 +16,7 @@ if (args.length > 0) {
       stylesheet: 'scss' as STYLE,
       newPath: process.cwd(),
       md: 'md' as MARKDOWN,
+      hasStorybook: false,
       type: 'fc' as 'fc'
     };
     for (let i = 1; i < args.length; i++) {

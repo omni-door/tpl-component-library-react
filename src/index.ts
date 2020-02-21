@@ -364,6 +364,7 @@ export function newTpl ({
   newPath,
   md,
   type,
+  hasStorybook,
   tpls
 }: {
   ts: boolean;
@@ -372,6 +373,7 @@ export function newTpl ({
   newPath: string;
   md: MARKDOWN;
   type: 'fc' | 'cc';
+  hasStorybook: boolean;
   tpls?: (tpls: TPLS_NEW) => TPLS_NEW_RETURE;
 }) {
   let custom_tpl_list = {};
@@ -408,7 +410,7 @@ export function newTpl ({
   const content_fc = type === 'fc' && tpl.component_functional({ ts, componentName, style: stylesheet });
   const content_readme = md === 'md' && tpl.component_readme({ componentName });
   const content_mdx = md === 'mdx' && tpl.component_mdx({ componentName });
-  const content_stories = tpl.component_stories({ componentName });
+  const content_stories = hasStorybook && tpl.component_stories({ componentName });
   const content_style = stylesheet && tpl.component_stylesheet({ componentName });
   const content_test = tpl.component_test({ componentName });
 
