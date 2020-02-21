@@ -12,6 +12,7 @@ if (args.length > 0) {
     // new template
     const options = {
       ts: true,
+      test: true,
       componentName: 'Omni',
       stylesheet: 'scss' as STYLE,
       newPath: process.cwd(),
