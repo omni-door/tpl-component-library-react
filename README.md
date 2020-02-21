@@ -37,21 +37,21 @@ The React component-library-react project template
 
 - tsconfig => tsconfig.json
 
-- component_class => component/index.(jsx|tsx)
+- component_class => component/{component}/index.(jsx|tsx)
 
-- component_functional => component/index.(jsx|tsx)
+- component_functional => component/{component}/index.(jsx|tsx)
 
-- component_index => component/index.(js|ts)
+- component_index => component/{component}/index.(js|ts)
 
-- component_readme => component/README.md
+- component_readme => component/{component}/README.md
 
-- component_stylesheet => component/style/index.(css|less|scss)
+- component_stylesheet => component/{component}/style/index.(css|less|scss)
 
-- component_test => component/test/index.(jsx|tsx)
+- component_test => component/{component}/test/index.(jsx|tsx)
 
-- component_mdx => component/README.mdx
+- component_mdx => component/{component}/README.mdx
 
-- component_stories => component/stories/index.(jsx|tsx)
+- component_stories => component/{component}/stories/index.(jsx|tsx)
 
 - source_index => src/index.(js|ts)
 
