@@ -133,7 +133,6 @@ async function init ({
   },
   success = () => logSuc('组件库项目初始化完成！(The component-library project initialization has been completed!)')
 }: InitOptions) {
-  // reset illegal strategy
   let custom_tpl_list = {};
   try {
     custom_tpl_list = typeof tpls === 'function'
@@ -363,7 +362,8 @@ export function newTpl ({
   stylesheet,
   newPath,
   md,
-  type
+  type,
+  tpls
 }: {
   ts: boolean;
   componentName: string;
@@ -371,8 +371,36 @@ export function newTpl ({
   newPath: string;
   md: 'md' | 'mdx';
   type: 'fc' | 'cc';
+  tpls?: (tpls: TPLS_NEW) => TPLS_NEW_RETURE;
 }) {
-  const tpl = { ...default_tpl_list };
+  let custom_tpl_list = {};
+  try {
+    custom_tpl_list = typeof tpls === 'function'
+      ? tpls(default_tpl_list)
+      : custom_tpl_list;
+
+    for (const tpl_name in custom_tpl_list) {
+      const name = tpl_name as keyof TPLS_NEW_RETURE;
+      const list = custom_tpl_list as TPLS_NEW_RETURE;
+      const tpl = list[name];
+      const tplFactory = (config: any) => {
+        try {
+          return tpl && tpl(config);
+        } catch (err) {
+          logWarn(JSON.stringify(err));
+          logWarn(`自定义模板 [${name}] 解析出错，将使用默认模板进行创建组件！(The custom template [${name}] parsing occured error, the default template will be used for initialization!)`);    
+        }
+
+        return default_tpl_list[name](config);
+      };
+
+      (list[name] as TPLS_NEW_FN) = tplFactory as TPLS_NEW_FN;
+    }
+  } catch (err_tpls) {
+    logWarn(JSON.stringify(err_tpls));
+    logWarn('生成自定义模板出错，将全部使用默认模板进行创建组件！(The custom template generating occured error, all will be initializated with the default template!)');
+  }
+  const tpl = { ...default_tpl_list, ...custom_tpl_list };
   // component tpl
   const content_index = tpl.component_index({ ts, componentName });
   const content_cc = type === 'cc' && tpl.component_class({ ts, componentName, style: stylesheet });
