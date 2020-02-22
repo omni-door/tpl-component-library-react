@@ -53,6 +53,7 @@ import {
   TPLS_NEW_RETURE
 } from './templates';
 import { dependencies, devDependencies } from './configs/dependencies';
+import { devDependencies as devDependencyMap } from './configs/dependencies_stable_map';
 
 const default_tpl_list = {
   babel: babelConfigJs,
@@ -183,7 +184,8 @@ async function init ({
     eslint,
     commitlint,
     stylelint,
-    strategy
+    strategy,
+    type_react: devDependencyMap['@types/react']
   });
   const content_gitignore = tpl.gitignore();
   const content_indexTpl = tpl.source_index();
