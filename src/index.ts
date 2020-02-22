@@ -54,6 +54,7 @@ import {
 } from './templates';
 import { dependencies, devDependencies } from './configs/dependencies';
 import { devDependencies as devDependencyMap } from './configs/dependencies_stable_map';
+export { setBrand, setLogo } from '@omni-door/tpl-utils';
 
 const default_tpl_list = {
   babel: babelConfigJs,
