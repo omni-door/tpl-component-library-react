@@ -1,7 +1,13 @@
 import path from 'path';
 import {
+  exec,
   arr2str,
   intersection,
+  output_file,
+  logInfo,
+  logErr,
+  logWarn,
+  logSuc,
   PKJTOOL,
   STYLE,
   STRATEGY,
@@ -47,13 +53,6 @@ import {
   TPLS_NEW_RETURE
 } from './templates';
 import { dependencies, devDependencies } from './configs/dependencies';
-import {
-  exec,
-  logErr,
-  logWarn,
-  output_file,
-  logSuc
-} from '@omni-door/tpl-utils';
 
 const default_tpl_list = {
   babel: babelConfigJs,
@@ -378,6 +377,7 @@ export function newTpl ({
   hasStorybook: boolean;
   tpls?: (tpls: TPLS_NEW) => TPLS_NEW_RETURE;
 }) {
+  logInfo(`开始创建 ${componentName} ${type === 'cc' ? '类' : '函数'}组件 (Start create ${componentName} ${type === 'cc' ? 'class' : 'functional'} component)`);
   let custom_tpl_list = {};
   try {
     custom_tpl_list = typeof tpls === 'function'
@@ -418,8 +418,7 @@ export function newTpl ({
 
   const pathToFileContentMap = {
     [`index.${ts ? 'ts' : 'js'}`]: content_index,
-    [`${componentName}.${ts ? 'tsx' : 'jsx'}`]: content_cc,
-    [`${componentName}.${ts ? 'tsx' : 'jsx'}`]: content_fc,
+    [`${componentName}.${ts ? 'tsx' : 'jsx'}`]: content_fc || content_cc,
     [`style/${componentName}.${stylesheet}`]: content_style,
     [`__test__/index.test.${
       ts
