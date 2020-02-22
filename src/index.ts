@@ -129,10 +129,10 @@ async function init ({
   dependencies: dependencies_custom,
   devDependencies: devDependencies_custom,
   error = () => {
-    logErr('组件库项目初始化失败！(The component-library project initialization has been occured some error!)');
+    logErr('组件库项目安装失败！(The component-library project installation has been occured some error!)');
     process.exit(1);
   },
-  success = () => logSuc('组件库项目初始化完成！(The component-library project initialization has been completed!)')
+  success = () => logSuc('组件库项目安装完成！(The component-library project installation has been completed!)')
 }: InitOptions) {
   let custom_tpl_list = {};
   try {
