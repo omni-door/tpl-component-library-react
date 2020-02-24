@@ -101,13 +101,11 @@ export default (config: {
         }
       },
       "lint-staged": {
-        ${eslint ? `"src/**/*.{js,jsx,ts,tsx,css}": [
-          "npm run lint:es_fix",
-          "git add"
+        ${eslint ? `"src/**/*.{js,jsx,ts,tsx}": [
+          "npm run lint:es_fix"
         ]${eslint && stylelint ? ',' : ''}` : ''}
-        ${stylelint ? `"src/**/*.{scss,sass,less}": [
-          "npm run lint:style_fix",
-          "git add"
+        ${stylelint ? `"src/**/*.{css,scss,sass,less}": [
+          "npm run lint:style_fix"
         ]` : ''}
       },`
     : ''
