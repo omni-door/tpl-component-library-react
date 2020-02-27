@@ -8,6 +8,7 @@ import {
   logErr,
   logWarn,
   logSuc,
+  logTime,
   PKJTOOL,
   STYLE,
   STRATEGY,
@@ -136,6 +137,8 @@ async function init ({
   },
   success = () => logSuc('组件库项目安装完成！(The component-library project installation has been completed!)')
 }: InitOptions) {
+  // 模板解析
+  logTime('模板解析');
   let custom_tpl_list = {};
   try {
     custom_tpl_list = typeof tpls === 'function'
@@ -165,86 +168,55 @@ async function init ({
   }
   const tpl = { ...default_tpl_list, ...custom_tpl_list };
   const project_type = 'component-library-react';
+  logTime('模板解析', true);
 
-  // default files
-  const content_omni = tpl.omni({
-    project_type,
-    ts,
-    test,
-    eslint,
-    commitlint,
-    style,
-    stylelint,
-    mdx: devServer === 'docz'
-  });
-  const content_pkg = tpl.pkj({
-    project_type,
-    name,
-    ts,
-    devServer,
-    test,
-    eslint,
-    commitlint,
-    stylelint,
-    strategy,
-    type_react: devDependencyMap['@types/react']
-  });
-  const content_gitignore = tpl.gitignore();
-  const content_indexTpl = tpl.source_index();
-
-  // tsconfig
-  const content_ts = ts && tpl.tsconfig();
-
-  // d.ts files
-  const content_d = ts && tpl.source_d({ style });
-
-  // test files
-  const content_jest = test && tpl.jest({ ts });
-
-  // lint files
-  const content_eslintrc = eslint && tpl.eslint({ ts });
-  const content_eslintignore = eslint && tpl.eslintignore();
-  const content_stylelint = stylelint && tpl.stylelint({ style });
-  const content_commitlint = commitlint && tpl.commitlint({ name });
-
-  // build files
-  const content_babel = devServer === 'storybook' && tpl.babel({ ts });
-
-  // server files
-  const content_bisheng = devServer === 'bisheng' && tpl.bisheng({ name });
-  const content_postReadMe = devServer === 'bisheng' && tpl.posts_readme();
-  const content_storybook_addons = devServer === 'storybook' && tpl.storybook_addons();
-  const content_storybook_config = devServer === 'storybook' && tpl.storybook_config({ name });
-  const content_storybook_mhead = devServer === 'storybook' && tpl.storybook_mhead({ name });
-  const content_storybook_webpack = devServer === 'storybook' && tpl.storybook_webpack({ ts, style });
-  const content_doczrc = devServer === 'docz' && tpl.doczrc({ name, ts, style });
-  const content_doczmdx = devServer === 'docz' && tpl.mdx({ name });
-
-  // ReadMe
-  const content_readMe = tpl.readme({ name, configFileName });
-
+  // 生成项目文件
+  logTime('生成文件');
   const pathToFileContentMap = {
-    [`${configFileName}`]: content_omni,
-    'package.json': content_pkg,
-    '.gitignore': content_gitignore,
-    [`src/components/index.${ts ? 'ts' : 'js'}`]: content_indexTpl,
-    'src/@types/global.d.ts': content_d,
-    'tsconfig.json': content_ts,
-    'jest.config.js': content_jest,
-    '.eslintrc.js': content_eslintrc,
-    '.eslintignore': content_eslintignore,
-    'stylelint.config.js': content_stylelint,
-    'commitlint.config.js': content_commitlint,
-    'babel.config.js': content_babel,
-    'README.md': content_readMe,
-    'src/index.mdx': content_doczmdx,
-    'bisheng.config.js': content_bisheng,
-    'posts/README.md': content_postReadMe,
-    '.storybook/addons.js': content_storybook_addons,
-    '.storybook/config.js': content_storybook_config,
-    '.storybook/manager-head.html': content_storybook_mhead,
-    '.storybook/webpack.config.js': content_storybook_webpack,
-    'doczrc.js': content_doczrc
+    // default files
+    [`${configFileName}`]: tpl.omni({
+      project_type,
+      ts,
+      test,
+      eslint,
+      commitlint,
+      style,
+      stylelint,
+      mdx: devServer === 'docz'
+    }),
+    'package.json': tpl.pkj({
+      project_type,
+      name,
+      ts,
+      devServer,
+      test,
+      eslint,
+      commitlint,
+      stylelint,
+      strategy,
+      type_react: devDependencyMap['@types/react']
+    }),
+    '.gitignore': tpl.gitignore(),
+    [`src/components/index.${ts ? 'ts' : 'js'}`]: tpl.source_index(),
+    'src/@types/global.d.ts': ts && tpl.source_d({ style }), // d.ts files
+    'tsconfig.json': ts && tpl.tsconfig(), // tsconfig
+    'jest.config.js': test && tpl.jest({ ts }), // test files
+    // lint files
+    '.eslintrc.js': eslint && tpl.eslint({ ts }),
+    '.eslintignore': eslint && tpl.eslintignore(),
+    'stylelint.config.js': stylelint && tpl.stylelint({ style }),
+    'commitlint.config.js': commitlint && tpl.commitlint({ name }),
+    'babel.config.js': devServer === 'storybook' && tpl.babel({ ts }), // build file
+    'README.md': tpl.readme({ name, configFileName }), // ReadMe
+    // server files
+    'src/index.mdx': devServer === 'docz' && tpl.mdx({ name }),
+    'bisheng.config.js': devServer === 'bisheng' && tpl.bisheng({ name }),
+    'posts/README.md': devServer === 'bisheng' && tpl.posts_readme(),
+    '.storybook/addons.js': devServer === 'storybook' && tpl.storybook_addons(),
+    '.storybook/config.js': devServer === 'storybook' && tpl.storybook_config({ name }),
+    '.storybook/manager-head.html': devServer === 'storybook' && tpl.storybook_mhead({ name }),
+    '.storybook/webpack.config.js': devServer === 'storybook' && tpl.storybook_webpack({ ts, style }),
+    'doczrc.js': devServer === 'docz' && tpl.doczrc({ name, ts, style })
   }
   /**
    * create files
@@ -256,7 +228,10 @@ async function init ({
       file_content: pathToFileContentMap[p]
     });
   }
+  logTime('生成文件', true);
 
+  // 项目依赖解析
+  logTime('依赖解析');
   let installCliPrefix = pkgtool === 'yarn' ? `${pkgtool} add --cwd ${initPath}` : `${pkgtool} install --save --prefix ${initPath}`;
   let installDevCliPrefix = pkgtool === 'yarn' ? `${pkgtool} add -D --cwd ${initPath}` : `${pkgtool} install --save-dev --prefix ${initPath}`;
   if (pkgtool === 'cnpm' && initPath !== process.cwd()) {
@@ -346,7 +321,10 @@ async function init ({
   const installStylelintDevCli = stylelintDepStr ? `${installDevCliPrefix} ${stylelintDepStr}` : '';
   const installServerDevCli = devServerDepStr ? `${installDevCliPrefix} ${devServerDepStr}` : '';
   const installCustomDevCli = customDepStr ? `${installDevCliPrefix} ${customDepStr}` : '';
+  logTime('依赖解析', true);
 
+  // 项目依赖安装
+  logTime('安装依赖');
   exec([
     installCli,
     installDevCli,
@@ -357,7 +335,10 @@ async function init ({
     installStylelintDevCli,
     installServerDevCli,
     installCustomDevCli
-  ], success, error, isSlient);
+  ], res => {
+    logTime('安装依赖', true);
+    success(res);
+  }, error, isSlient);
 }
 
 export function newTpl ({
@@ -381,6 +362,7 @@ export function newTpl ({
   hasStorybook: boolean;
   tpls?: (tpls: TPLS_NEW) => TPLS_NEW_RETURE;
 }) {
+  logTime('创建组件');
   logInfo(`开始创建 ${componentName} ${type === 'cc' ? '类' : '函数'}组件 (Start create ${componentName} ${type === 'cc' ? 'class' : 'functional'} component)`);
   let custom_tpl_list = {};
   try {
@@ -447,6 +429,7 @@ export function newTpl ({
       file_content: pathToFileContentMap[p]
     });
   }
+  logTime('创建组件', true);
 }
 
 export default init;
