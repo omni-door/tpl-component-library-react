@@ -1,6 +1,6 @@
 export const dependencies = {
-  'react': '16.12.0',
-  'react-dom': '16.12.0'
+  'react': '^16.12.0',
+  'react-dom': '^16.12.0'
 };
 
 export const devDependencies = {
