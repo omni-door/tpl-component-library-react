@@ -1,6 +1,6 @@
 {
   "name": "@omni-door/tpl-component-library-react",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "The React component-library-react project template",
   "bin": {
     "omni-component-library-react": "./bin/omni-door-component-library-react.js"
@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/omni-door/tpl-component-library-react#readme",
   "dependencies": {
-    "@omni-door/tpl-utils": "^0.0.16"
+    "@omni-door/tpl-utils": "^0.0.17"
   },
   "devDependencies": {
     "@types/chai": "^4.2.9",
