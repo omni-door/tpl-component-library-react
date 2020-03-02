@@ -4,6 +4,8 @@ export const dependencies = {
 };
 
 export const devDependencies = {
+  'react': '^16.12.0',
+  'react-dom': '^16.12.0',
   '@babel/core': '7.8.4',
   '@babel/preset-env': '7.8.4',
   '@babel/preset-react': '7.8.3',

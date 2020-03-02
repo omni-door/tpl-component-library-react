@@ -112,6 +112,10 @@ export default (config: {
 }
   "keywords": [],
   "author": "",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
   ${
     type_react && ts && strategy === 'stable'
       ? `"resolutions": {

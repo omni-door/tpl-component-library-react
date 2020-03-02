@@ -13,9 +13,9 @@ interface Config {
 
 export function dependencies (strategy: STRATEGY) {
   const dependency = getDependency(strategy, dependenciesMap);
-  const deps = [
-    dependency('react'),
-    dependency('react-dom')
+  const deps: string[] = [
+    // dependency('react'),
+    // dependency('react-dom')
   ];
   return {
     depArr: [ ...deps ],
@@ -150,7 +150,9 @@ export function devDependencies (strategy: STRATEGY, config: Config) {
 
   const defaultDep = [
     dependency('@omni-door/cli'),
-    dependency('del')
+    dependency('del'),
+    dependency('react'),
+    dependency('react-dom')
   ];
 
   return {
