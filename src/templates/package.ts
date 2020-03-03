@@ -16,14 +16,16 @@ export default (config: {
 
   let devScript = '';
   let demoScript = '';
+  const lowerName = name.toLowerCase();
+
   switch(devServer) {
     case 'docz':
       devScript = 'docz dev';
-      demoScript = `docz build --base /.${name}`;
+      demoScript = `docz build --base /${lowerName}`;
       break;
     case 'storybook':
       devScript = 'start-storybook -p 6200';
-      demoScript = `build-storybook -c .storybook -o .${name}`;
+      demoScript = `build-storybook -c .storybook -o .${lowerName}`;
       break;
     case 'bisheng':
       devScript = 'bisheng start';
@@ -31,7 +33,6 @@ export default (config: {
       break;
   }
 
-  const lowerName = name.toLowerCase();
   return `{
   "name": "${lowerName}",
   "version": "0.0.1",
