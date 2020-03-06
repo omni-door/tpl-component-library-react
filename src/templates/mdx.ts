@@ -10,7 +10,7 @@ route: /
 # ${name}
 
 ## 导航
-| 组件(Component) | 开发者(Developer) |
+| 组件 | 开发/维护 |
 | --- | --- |
 `;
 }

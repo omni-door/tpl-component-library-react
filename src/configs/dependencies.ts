@@ -105,10 +105,12 @@ export function devDependencies (strategy: STRATEGY, config: Config) {
 
   const doczDependencies= [
     dependency('docz'),
-    dependency('docz-theme-default'),
-    dependency('docz-plugin-css'),
-    dependency('react-hot-loader'),
-    ts ? dependency('@types/vfile-message') : ''
+    dependency('gatsby-theme-docz'),
+    (style === 'all' || style === 'less') ? dependency('less') : '',
+    (style === 'all' || style === 'less') ? dependency('gatsby-plugin-less') : '',
+    (style === 'all' || style === 'scss') ? dependency('node-sass') : '',
+    (style === 'all' || style === 'scss') ? dependency('gatsby-plugin-sass') : '',
+    dependency('react-hot-loader')
   ];
 
   const storybookDependencies= [

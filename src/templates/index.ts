@@ -19,6 +19,7 @@ import storybook_webpack from './.storybook/webpack';
 import bisheng from './bisheng';
 import posts_readme from './posts/readme';
 import doczrc from './doczrc';
+import gatsby from './gatsby';
 import mdx from './mdx';
 import component_class from './new/class_component';
 import component_functional from './new/functional_component';
@@ -50,6 +51,7 @@ export { default as storybook_webpack } from './.storybook/webpack';
 export { default as bisheng } from './bisheng';
 export { default as posts_readme } from './posts/readme';
 export { default as doczrc } from './doczrc';
+export { default as gatsby } from './gatsby';
 export { default as mdx } from './mdx';
 export { default as component_class } from './new/class_component';
 export { default as component_functional } from './new/functional_component';
@@ -80,6 +82,7 @@ const tpls = {
   storybook_mhead,
   storybook_webpack,
   doczrc,
+  gatsby,
   bisheng,
   posts_readme,
   mdx,

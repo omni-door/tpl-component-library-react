@@ -35,6 +35,7 @@ import {
   storybook_mhead,
   storybook_webpack,
   doczrc,
+  gatsby,
   bisheng,
   posts_readme,
   mdx,
@@ -78,6 +79,7 @@ const default_tpl_list = {
   storybook_mhead,
   storybook_webpack,
   doczrc,
+  gatsby,
   bisheng,
   posts_readme,
   mdx,
@@ -216,7 +218,8 @@ async function init ({
     '.storybook/config.js': devServer === 'storybook' && tpl.storybook_config({ name }),
     '.storybook/manager-head.html': devServer === 'storybook' && tpl.storybook_mhead({ name }),
     '.storybook/webpack.config.js': devServer === 'storybook' && tpl.storybook_webpack({ ts, style }),
-    'doczrc.js': devServer === 'docz' && tpl.doczrc({ name, ts, style })
+    'doczrc.js': devServer === 'docz' && tpl.doczrc({ name, ts }),
+    'gatsby-config.js': devServer === 'docz' && tpl.gatsby({ style })
   }
   /**
    * create files

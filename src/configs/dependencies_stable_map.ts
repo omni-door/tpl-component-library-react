@@ -49,9 +49,10 @@ export const devDependencies = {
   'ts-node': '8.6.2',
   'typescript': '3.7.5',
   'url-loader': '3.0.0',
-  'docz': '1.3.2', // docz@2 以上版本问题较多，暂缓升级
-  'docz-plugin-css': '0.11.0',
-  'docz-theme-default': '1.2.0',
+  'docz': '2.2.0',
+  'gatsby-plugin-less': '3.0.19',
+  'gatsby-plugin-sass': '2.1.29',
+  'gatsby-theme-docz': '2.2.0',
   'react-hot-loader': '4.12.19',
   '@storybook/react': '5.2.5', // @storybook 新版本问题较多，暂缓升级
   '@storybook/addons': '5.2.5',
