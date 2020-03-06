@@ -13,7 +13,7 @@ export default function (config: {
       gatsbyPlugin.push('gatsby-plugin-sass');
       break;
     case 'all':
-      gatsbyPlugin.push('gatsby-plugin-css', 'gatsby-plugin-less', 'gatsby-plugin-sass');
+      gatsbyPlugin.push('gatsby-plugin-less', 'gatsby-plugin-sass');
       break;
   }
 
