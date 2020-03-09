@@ -37,9 +37,9 @@ export default (config: {
   "name": "${lowerName}",
   "version": "0.0.1",
   "description": "",
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "typings": "lib/index.d.ts",
+  "main": "lib/components/index.js",
+  "module": "es/components/index.js",
+  "typings": "lib/components/index.d.ts",
   "scripts": {
     ${devScript ? `"start": "${devScript}",
     "dev": "${devScript}",` : ''}
