@@ -199,6 +199,7 @@ async function init ({
       type_react: devDependencyMap['@types/react']
     }),
     '.gitignore': tpl.gitignore(),
+    '.npmignore': tpl.npmignore(),
     [`src/components/index.${ts ? 'ts' : 'js'}`]: tpl.source_index(),
     'src/@types/global.d.ts': ts && tpl.source_d({ style }), // d.ts files
     'tsconfig.json': ts && tpl.tsconfig(), // tsconfig
