@@ -26,7 +26,7 @@ module.exports = {
 
     // 输入路径 (the build source directory)
     // 务必使用绝对路径 (must be a absolute path)
-    srcDir: path.resolve('src/components'),
+    srcDir: path.resolve('src'),
 
     // 输出路径 (the directory for compiled project)
     // 务必使用绝对路径 (must be a absolute path)

@@ -72,8 +72,7 @@ export default function () {
     ".docz/",
     ".storybook/",
     ".out/",
-    "*.js",
-    "src/**/*.js"
+    "*.js"
   ]
 }`;
 }
