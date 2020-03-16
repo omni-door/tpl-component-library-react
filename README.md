@@ -3,6 +3,8 @@ The React component-library-react project template
 
 [![NPM downloads](http://img.shields.io/npm/dm/%40omni-door%2Ftpl-component-library-react.svg?style=flat-square)](https://www.npmjs.com/package/@omni-door/tpl-component-library-react)
 [![npm version](https://badge.fury.io/js/%40omni-door%2Ftpl-component-library-react.svg)](https://badge.fury.io/js/%40omni-door%2Ftpl-component-library-react)
+[![Build Status](https://travis-ci.com/omni-door/tpl-component-library-react.svg?branch=master)](https://travis-ci.com/omni-door/tpl-component-library-react)
+[![codecov](https://codecov.io/gh/omni-door/tpl-component-library-react/branch/master/graph/badge.svg)](https://codecov.io/gh/omni-door/tpl-component-library-react)
 [![install size](https://packagephobia.now.sh/badge?p=%40omni-door%2Ftpl-component-library-react)](https://packagephobia.now.sh/result?p=%40omni-door%2Ftpl-component-library-react)
 [![license](http://img.shields.io/npm/l/%40omni-door%2Ftpl-component-library-react.svg)](https://github.com/omni-door/tpl-component-library-react/blob/master/LICENSE)
 
