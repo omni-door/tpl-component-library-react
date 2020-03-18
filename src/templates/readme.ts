@@ -8,55 +8,55 @@ export default function (config: {
 
 ## Run your project
 
-\`\`\`sh
+\`\`\`shell
 npm start
 \`\`\`
 or
-\`\`\`sh
+\`\`\`shell
 npm run dev
 \`\`\`
 
 ## Create a Component by the Template
 
 ### Class Component
-\`\`\`sh
+\`\`\`shell
 npm run new [componentName]
 \`\`\`
 
 ### Functional Component
-\`\`\`sh
+\`\`\`shell
 npm run new [componentName] -- -f
 \`\`\`
 
 ## Build your project
 
-\`\`\`sh
+\`\`\`shell
 npm run build
 \`\`\`
 
 ### Ignore pre-check
-\`\`\`sh
+\`\`\`shell
 npm run build -- -n
 \`\`\`
 
 ## Release your project
 
-\`\`\`sh
+\`\`\`shell
 npm run release
 \`\`\`
 
 ### Ignore automatic iteration of version
-\`\`\`sh
+\`\`\`shell
 npm run release -- -i
 \`\`\`
 
 ### Manual iteration of version
-\`\`\`sh
+\`\`\`shell
 npm run release -- -m 0.3.25
 \`\`\`
 
 ### Ignore pre-check
-\`\`\`sh
+\`\`\`shell
 npm run release -- -n
 \`\`\`
 

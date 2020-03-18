@@ -400,7 +400,7 @@ export function newTpl ({
   const content_index = tpl.component_index({ ts, componentName });
   const content_cc = type === 'cc' && tpl.component_class({ ts, componentName, style: stylesheet });
   const content_fc = type === 'fc' && tpl.component_functional({ ts, componentName, style: stylesheet });
-  const content_readme = md === 'md' && tpl.component_readme({ componentName });
+  const content_readme = md === 'md' && tpl.component_readme({ componentName, ts });
   const content_mdx = md === 'mdx' && tpl.component_mdx({ componentName });
   const content_stories = hasStorybook && tpl.component_stories({ componentName });
   const content_style = stylesheet && tpl.component_stylesheet({ componentName });

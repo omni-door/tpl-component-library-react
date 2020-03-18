@@ -1,13 +1,14 @@
 export default function (config: {
   componentName: string;
+  ts: boolean;
 }) {
-  const { componentName } = config;
+  const { componentName, ts } = config;
 
   return `# ${componentName}
 
 ## Example
 
-\`\`\`javascript
+\`\`\`${ts ? 'typescript' : 'javascript'}
 <${componentName} />
 \`\`\``;
 }
