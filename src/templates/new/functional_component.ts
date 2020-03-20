@@ -7,7 +7,7 @@ export default function (config: {
 }) {
   const { ts, componentName, style } = config;
 
-  return `import React${ts ? ', { FC }' : ''} from 'react';
+  return `import React, { memo${ts ? ', FC ' : ''}} from 'react';
 ${style ? `import './style/${componentName}.${style === 'all' ? 'less' : style}';` : ''}
 
 ${ts ? `export interface ${componentName}Props {}` : ''}
@@ -24,6 +24,5 @@ export const ${componentName}${ts ? `: FC<${componentName}Props>` : ''} = props 
   );
 };
 
-export default ${componentName};`;
+export default memo(${componentName});`;
 }
-
