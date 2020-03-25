@@ -30,8 +30,8 @@ module.exports = {
     "project": "./tsconfig.json"
   },
   "plugins": [
-    "react",
-    ${ts ? '"@typescript-eslint"' : ''}${prettier ? `,
+    "react"${ts ? `,
+    "@typescript-eslint"` : ''}${prettier ? `,
     "prettier"` : ''}
   ],
   "rules": {
