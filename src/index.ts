@@ -278,6 +278,8 @@ async function init ({
     testDepArr,
     eslintDepArr,
     eslintDepStr,
+    prettierDepArr,
+    prettierDepStr,
     commitlintDepArr,
     commitlintDepStr,
     stylelintDepArr,
@@ -309,6 +311,7 @@ async function init ({
         tsDepArr = [ ...intersection(tsDepArr, tsDepArr.filter(v => v !== item_rm)) ];
         testDepArr = [ ...intersection(testDepArr, testDepArr.filter(v => v !== item_rm)) ];
         eslintDepArr = [ ...intersection(eslintDepArr, eslintDepArr.filter(v => v !== item_rm)) ];
+        prettierDepArr = [ ...intersection(prettierDepArr, prettierDepArr.filter(v => v !== item_rm)) ];
         commitlintDepArr = [ ...intersection(commitlintDepArr, commitlintDepArr.filter(v => v !== item_rm)) ];
         stylelintDepArr = [ ...intersection(stylelintDepArr, stylelintDepArr.filter(v => v !== item_rm)) ];
         devServerDepArr = [ ...intersection(devServerDepArr, devServerDepArr.filter(v => v !== item_rm)) ];
@@ -317,6 +320,7 @@ async function init ({
       tsDepStr = arr2str(tsDepArr);
       testDepStr = arr2str(testDepArr);
       eslintDepStr = arr2str(eslintDepArr);
+      prettierDepStr = arr2str(prettierDepArr);
       commitlintDepStr = arr2str(commitlintDepArr);
       stylelintDepStr = arr2str(stylelintDepArr);
       devServerDepStr = arr2str(devServerDepArr);
@@ -328,6 +332,7 @@ async function init ({
   const installTsDevCli = tsDepStr ? `${installDevCliPrefix} ${tsDepStr}` : '';
   const installTestDevCli = testDepStr ? `${installDevCliPrefix} ${testDepStr}` : '';
   const installEslintDevCli = eslintDepStr ? `${installDevCliPrefix} ${eslintDepStr}` : '';
+  const installPrettierDevCli = prettierDepStr ? `${installDevCliPrefix} ${prettierDepStr}` : '';
   const installCommitlintDevCli = commitlintDepStr ? `${installDevCliPrefix} ${commitlintDepStr}` : '';
   const installStylelintDevCli = stylelintDepStr ? `${installDevCliPrefix} ${stylelintDepStr}` : '';
   const installServerDevCli = devServerDepStr ? `${installDevCliPrefix} ${devServerDepStr}` : '';
@@ -342,6 +347,7 @@ async function init ({
     installTsDevCli,
     installTestDevCli,
     installEslintDevCli,
+    installPrettierDevCli,
     installCommitlintDevCli,
     installStylelintDevCli,
     installServerDevCli,
