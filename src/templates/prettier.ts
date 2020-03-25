@@ -6,7 +6,9 @@ module.exports = {
   printWidth: 50,
   semi: true,
   singleQuote: true,
-  jsxSingleQuote: true
+  jsxSingleQuote: true,
+  trailingComma: 'none',
+  endOfLine: 'auto'
 };`;
 }
 
