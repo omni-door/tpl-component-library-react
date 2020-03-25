@@ -40,6 +40,7 @@ if (args.length > 0) {
       ts: true,
       test: false,
       eslint: true,
+      prettier: true,
       commitlint: false,
       style: 'scss' as STYLE,
       stylelint: true,

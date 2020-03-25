@@ -5,6 +5,7 @@ interface Config {
   ts: boolean;
   test: boolean;
   eslint: boolean;
+  prettier: boolean;
   commitlint: boolean;
   style: STYLE;
   stylelint: boolean;
@@ -30,6 +31,7 @@ export function devDependencies (strategy: STRATEGY, config: Config) {
     ts,
     test,
     eslint,
+    prettier,
     commitlint,
     style,
     stylelint,
@@ -83,6 +85,12 @@ export function devDependencies (strategy: STRATEGY, config: Config) {
     dependency('eslint-plugin-react'),
     ts ? dependency('@typescript-eslint/eslint-plugin') : '',
     ts ? dependency('@typescript-eslint/parser') : ''
+  ] : [];
+
+  const prettierDependencies = prettier ? [
+    dependency('prettier'),
+    eslint ? dependency('eslint-config-prettier') : '',
+    eslint ? dependency('eslint-plugin-prettier') : ''
   ] : [];
 
   const commitlintDependencies = commitlint ? [
@@ -163,6 +171,7 @@ export function devDependencies (strategy: STRATEGY, config: Config) {
       ...tsDependencies,
       ...testDependencies,
       ...eslintDependencies,
+      ...prettierDependencies,
       ...commitlintDependencies,
       ...stylelintDependencies,
       ...devServerDependencies
@@ -175,6 +184,8 @@ export function devDependencies (strategy: STRATEGY, config: Config) {
     testDepStr: arr2str(testDependencies),
     eslintDepArr: eslintDependencies,
     eslintDepStr: arr2str(eslintDependencies),
+    prettierDepArr: prettierDependencies,
+    prettierDepStr: arr2str(prettierDependencies),
     commitlintDepArr: commitlintDependencies,
     commitlintDepStr: arr2str(commitlintDependencies),
     stylelintDepArr: stylelintDependencies,

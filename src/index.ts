@@ -25,6 +25,7 @@ import {
   npmignore,
   omni,
   pkj,
+  prettier,
   readme,
   stylelint,
   tsconfig,
@@ -69,6 +70,7 @@ const default_tpl_list = {
   npmignore,
   omni,
   pkj,
+  prettier,
   readme,
   stylelint,
   tsconfig,
@@ -104,6 +106,7 @@ export type InitOptions = {
   ts: boolean;
   test: boolean;
   eslint: boolean;
+  prettier: boolean;
   commitlint: boolean;
   style: STYLE;
   stylelint: boolean;
@@ -125,6 +128,7 @@ async function init ({
   ts,
   test,
   eslint,
+  prettier,
   commitlint,
   style,
   stylelint,
@@ -193,6 +197,7 @@ async function init ({
       devServer,
       test,
       eslint,
+      prettier,
       commitlint,
       stylelint,
       strategy,
@@ -205,8 +210,9 @@ async function init ({
     'tsconfig.json': ts && tpl.tsconfig(), // tsconfig
     'jest.config.js': test && tpl.jest({ ts }), // test files
     // lint files
-    '.eslintrc.js': eslint && tpl.eslint({ ts }),
+    '.eslintrc.js': eslint && tpl.eslint({ ts, prettier }),
     '.eslintignore': eslint && tpl.eslintignore(),
+    'prettier.config.js': prettier && tpl.prettier(),
     'stylelint.config.js': stylelint && tpl.stylelint({ style }),
     'commitlint.config.js': commitlint && tpl.commitlint({ name }),
     'babel.config.js': devServer === 'storybook' && tpl.babel({ ts }), // build file
@@ -282,6 +288,7 @@ async function init ({
   } = devDependencies(strategy, {
     ts,
     eslint,
+    prettier,
     commitlint,
     style,
     stylelint,
