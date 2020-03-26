@@ -52,12 +52,14 @@ export const devDependencies = {
   'ts-node': '8.6.2',
   'typescript': '3.7.5',
   'url-loader': '~3.0.0',
+  // docz 依赖
   'docz': '2.2.0',
   'gatsby-plugin-less': '3.0.19',
   'gatsby-plugin-sass': '2.1.29',
   'gatsby-theme-docz': '2.2.0',
+  // storybook 依赖
   'react-hot-loader': '4.12.19',
-  '@storybook/react': '5.2.5', // @storybook 新版本问题较多，暂缓升级
+  '@storybook/react': '5.2.5',
   '@storybook/addons': '5.2.5',
   '@storybook/addon-options': '5.2.5',
   '@storybook/addon-actions': '5.2.5',
@@ -70,7 +72,12 @@ export const devDependencies = {
   'react-docgen-typescript-loader': '3.6.0',
   'storybook-readme': '5.0.8',
   '@omni-door/cli': 'latest',
-  'bisheng': '1.4.6', // bisheng 新版本问题较多，暂缓升级
+  // bisheng 依赖
+  'bisheng': '1.4.6',
   'bisheng-plugin-react': '1.1.1',
-  'bisheng-theme-one': '0.2.30'
+  'bisheng-theme-one': '0.2.30',
+  // styleguidist 依赖
+  'react-docgen': '5.3.0',
+  'react-docgen-typescript': '1.16.3',
+  'react-styleguidist': '11.0.4'
 };

@@ -8,7 +8,7 @@ export default function (config: {
 
 ## Example
 
-\`\`\`${ts ? 'typescript' : 'javascript'}
+\`\`\`${ts ? 'tsx' : 'jsx'}
 <${componentName} />
 \`\`\``;
 }

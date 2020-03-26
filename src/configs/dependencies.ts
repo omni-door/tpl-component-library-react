@@ -145,6 +145,12 @@ export function devDependencies (strategy: STRATEGY, config: Config) {
     ts ? dependency('@types/vfile-message') : ''
   ];
 
+  const styleguidistDependencies = [
+    dependency('react-styleguidist'),
+    dependency('react-docgen'),
+    ts ? dependency('react-docgen-typescript') : ''
+  ];
+
   let devServerDependencies: string[] = [];
   switch(devServer) {
     case 'docz':
@@ -155,6 +161,9 @@ export function devDependencies (strategy: STRATEGY, config: Config) {
       break;
     case 'bisheng':
       devServerDependencies = bishengDependencies;
+      break;
+    case 'styleguidist':
+      devServerDependencies = styleguidistDependencies;
       break;
   }
 

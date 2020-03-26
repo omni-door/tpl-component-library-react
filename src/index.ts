@@ -28,6 +28,7 @@ import {
   prettier,
   readme,
   stylelint,
+  styleguidist,
   tsconfig,
   source_index,
   source_d,
@@ -73,6 +74,7 @@ const default_tpl_list = {
   prettier,
   readme,
   stylelint,
+  styleguidist,
   tsconfig,
   source_index,
   source_d,
@@ -226,7 +228,8 @@ async function init ({
     '.storybook/manager-head.html': devServer === 'storybook' && tpl.storybook_mhead({ name }),
     '.storybook/webpack.config.js': devServer === 'storybook' && tpl.storybook_webpack({ ts, style }),
     'doczrc.js': devServer === 'docz' && tpl.doczrc({ name, ts }),
-    'gatsby-config.js': devServer === 'docz' && tpl.gatsby({ style })
+    'gatsby-config.js': devServer === 'docz' && tpl.gatsby({ style }),
+    'styleguide.config.js': devServer === 'styleguidist' && tpl.styleguidist({ ts, style })
   }
   /**
    * create files

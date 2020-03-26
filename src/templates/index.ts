@@ -11,6 +11,7 @@ import prettier from './prettier';
 import readme from './readme';
 import tsconfig from './tsconfig';
 import stylelint from './stylelint';
+import styleguidist from './styleguidist';
 import source_index from './source/index';
 import source_d from './source/declaration';
 import storybook_addons from './.storybook/addons';
@@ -44,6 +45,7 @@ export { default as prettier } from './prettier';
 export { default as readme } from './readme';
 export { default as tsconfig } from './tsconfig';
 export { default as stylelint } from './stylelint';
+export { default as styleguidist } from './styleguidist';
 export { default as source_index } from './source/index';
 export { default as source_d } from './source/declaration';
 export { default as storybook_addons } from './.storybook/addons';
@@ -77,6 +79,7 @@ const tpls = {
   prettier,
   readme,
   stylelint,
+  styleguidist,
   tsconfig,
   source_index,
   source_d,

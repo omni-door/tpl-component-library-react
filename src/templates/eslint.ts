@@ -68,7 +68,9 @@ module.exports = {
         "jsxSingleQuote": true,
         "semi": true,
         "trailingComma": "none",
-        "endOfLine": "auto"
+        "endOfLine": "auto",
+        "arrowParens": 'avoid',
+        "rangeEnd": 0
       }
     ]` : ''}
   }

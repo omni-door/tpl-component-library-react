@@ -8,7 +8,9 @@ module.exports = {
   singleQuote: true,
   jsxSingleQuote: true,
   trailingComma: 'none',
-  endOfLine: 'auto'
+  endOfLine: 'auto',
+  arrowParens: 'avoid',
+  rangeEnd: 0
 };`;
 }
 

@@ -43,6 +43,10 @@ export default (config: {
       devScript = 'bisheng start';
       demoScript = 'bisheng build';
       break;
+    case 'styleguidist':
+      devScript = 'styleguidist server --port 6200';
+      demoScript = 'styleguidist build';
+      break;
   }
 
   return `{
