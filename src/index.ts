@@ -187,6 +187,7 @@ async function init ({
       ts,
       test,
       eslint,
+      prettier,
       commitlint,
       style,
       stylelint,

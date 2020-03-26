@@ -6,12 +6,13 @@ export default (config: {
   ts: boolean;
   test: boolean;
   eslint: boolean;
+  prettier: boolean;
   commitlint: boolean;
   style: STYLE;
   stylelint: boolean;
   mdx: boolean;
 }) => {
-  const { project_type, ts, test, eslint, commitlint, style, stylelint, mdx } = config;
+  const { project_type, ts, test, eslint, prettier, commitlint, style, stylelint, mdx } = config;
 
   return `'use strict';
 
@@ -45,6 +46,7 @@ module.exports = {
       typescript: ${!!ts}, // 构建时是否处理ts或tsx文件 (whether or not process the ts or tsx files)
       test: ${!!test}, // 构建时是否进行单元测试 (whether or not process unit-test)
       eslint: ${!!eslint}, // 构建时是否进行eslint检测 (whether or not process eslint fix and check)
+      prettier: ${!!prettier}, // 构建时是否进行prettier检测 (whether or not process prettier checking)
       stylelint: ${!!stylelint}, // 构建时是否进行stylelint检测 (whether or not process style lint check)
     }
   },
@@ -55,6 +57,7 @@ module.exports = {
     preflight: {
       test: ${!!test}, // 发布前是否进行单元测试 (whether or not process unit-test)
       eslint: ${!!eslint}, // 发布前是否进行eslint检测 (whether or not process eslint fix and check)
+      prettier: ${!!prettier}, // 发布前是否进行prettier检测 (whether or not process prettier checking)
       stylelint: ${!!stylelint}, // 发布前是否进行stylelint检测 (whether or not process style lint check)
       commitlint: ${!!commitlint}, // 发布前是否进行commitlint检测 (whether or not process commit lint check)
       branch: 'master' // 发布前进行分支检测，设置为空字符串则不会检测 (only can release in this branch, set empty string to ignore this check)
