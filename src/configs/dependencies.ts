@@ -148,7 +148,10 @@ export function devDependencies (strategy: STRATEGY, config: Config) {
   const styleguidistDependencies = [
     dependency('react-styleguidist'),
     dependency('react-docgen'),
-    ts ? dependency('react-docgen-typescript') : ''
+    dependency('webpack'),
+    ts ? dependency('react-docgen-typescript') : '',
+    ...loaderDependencies,
+    ...babelDependencies
   ];
 
   let devServerDependencies: string[] = [];

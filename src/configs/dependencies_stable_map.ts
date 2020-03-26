@@ -79,5 +79,6 @@ export const devDependencies = {
   // styleguidist 依赖
   'react-docgen': '5.3.0',
   'react-docgen-typescript': '1.16.3',
-  'react-styleguidist': '11.0.4'
+  'react-styleguidist': '11.0.4',
+  'webpack': '~4.42.1'
 };

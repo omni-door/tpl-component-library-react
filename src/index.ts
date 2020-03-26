@@ -218,7 +218,7 @@ async function init ({
     'prettier.config.js': prettier && tpl.prettier(),
     'stylelint.config.js': stylelint && tpl.stylelint({ style }),
     'commitlint.config.js': commitlint && tpl.commitlint({ name }),
-    'babel.config.js': devServer === 'storybook' && tpl.babel({ ts }), // build file
+    'babel.config.js': (devServer === 'storybook' || devServer === 'styleguidist') && tpl.babel({ ts }), // build file
     'README.md': tpl.readme({ name, configFileName }), // ReadMe
     // server files
     'src/index.mdx': devServer === 'docz' && tpl.mdx({ name }),
