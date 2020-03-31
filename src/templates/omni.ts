@@ -1,5 +1,5 @@
 
-import { PROJECT_TYPE, STYLE } from '@omni-door/tpl-utils';
+import { PROJECT_TYPE, STYLE } from '@omni-door/utils';
 
 export default (config: {
   project_type: PROJECT_TYPE;

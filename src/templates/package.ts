@@ -1,4 +1,4 @@
-import { PROJECT_TYPE, DEVSERVER, STRATEGY } from '@omni-door/tpl-utils';
+import { PROJECT_TYPE, DEVSERVER, STRATEGY } from '@omni-door/utils';
 
 export default (config: {
   project_type: PROJECT_TYPE;

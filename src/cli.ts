@@ -1,4 +1,4 @@
-import { STRATEGY, STYLE, PKJTOOL, DEVSERVER, MARKDOWN } from '@omni-door/tpl-utils';
+import { STRATEGY, STYLE, PKJTOOL, DEVSERVER, MARKDOWN } from '@omni-door/utils';
 import { parse } from 'path';
 import init, { newTpl } from './index';
 const args = process.argv.slice(2);
