@@ -14,6 +14,9 @@ const tpl =
   "name": "\${project_name.toLowerCase()}",
   "version": "0.0.1",
   "description": "",
+  "main": "lib/components/index.js",
+  "module": "es/components/index.js",
+  "typings": "lib/components/index.d.ts",
   "scripts": {
     \${devScript ? \`"start": "\${devScript}",
     "dev": "\${devScript}",\` : ''}
