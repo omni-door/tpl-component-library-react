@@ -1,4 +1,4 @@
-import { STRATEGY, STYLE, PKJTOOL, DEVSERVER, MARKDOWN } from '@omni-door/utils';
+import { STRATEGY, STYLE, PKJTOOL, DEVSERVER, MARKDOWN, logErr } from '@omni-door/utils';
 import { parse } from 'path';
 import init, { newTpl } from './index';
 const args = process.argv.slice(2);
@@ -29,7 +29,12 @@ if (args.length > 0) {
           ? false
           : val;
     }
-    newTpl(options);
+    try {
+      newTpl(options);
+    } catch (err) {
+      logErr(err);
+      process.exit(1);
+    }
   } else if (args[0] === 'init') {
     // init
     const options = {
@@ -55,6 +60,11 @@ if (args.length > 0) {
           ? false
           : val;
     }
-    init(options);
+    try {
+      init(options);
+    } catch (err) {
+      logErr(err);
+      process.exit(1);
+    }
   }
 }

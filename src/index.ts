@@ -267,7 +267,7 @@ async function init ({
     'doczrc.js': devServer === 'docz' && tpl.doczrc(params),
     'gatsby-config.js': devServer === 'docz' && tpl.gatsby(params),
     'styleguide.config.js': devServer === 'styleguidist' && tpl.styleguidist(params)
-  }
+  };
   /**
    * create files
    */
