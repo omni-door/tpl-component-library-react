@@ -4,6 +4,7 @@ import eslint, { tpl_eslint } from './eslint';
 import eslintignore, { tpl_ignore_eslint } from './ignore/eslintignore';
 import gitignore, { tpl_ignore_git } from './ignore/gitignore';
 import npmignore, { tpl_ignore_npm } from './ignore/npmignore';
+import prettierignore, { tpl_ignore_prettier } from './ignore/prettierignore';
 import jest, { tpl_jest } from './jest';
 import omni, { tpl_omni } from './omni';
 import pkj, { tpl_package } from './package';
@@ -38,6 +39,7 @@ export { default as eslint, tpl_eslint } from './eslint';
 export { default as eslintignore, tpl_ignore_eslint } from './ignore/eslintignore';
 export { default as gitignore, tpl_ignore_git } from './ignore/gitignore';
 export { default as npmignore, tpl_ignore_npm } from './ignore/npmignore';
+export { default as prettierignore, tpl_ignore_prettier } from './ignore/prettierignore';
 export { default as jest, tpl_jest } from './jest';
 export { default as omni, tpl_omni } from './omni';
 export { default as pkj, tpl_package } from './package';
@@ -74,6 +76,7 @@ const tpls = {
   gitignore,
   jest,
   npmignore,
+  prettierignore,
   omni,
   pkj,
   prettier,
@@ -114,6 +117,7 @@ export const tpls_origin = {
   tpl_ignore_eslint,
   tpl_ignore_git,
   tpl_ignore_npm,
+  tpl_ignore_prettier,
   tpl_jest,
   tpl_new_class,
   tpl_new_functional,
