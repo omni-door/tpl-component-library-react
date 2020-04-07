@@ -16,8 +16,8 @@ module.exports = {
   resolver: require('react-docgen').resolver.findAllComponentDefinitions,
   propsParser: \${
     ts
-      ? 'require(\'react-docgen-typescript\').withDefaultConfig({ propFilter: { skipPropsWithoutDoc: true } }).parse'
-      : '(filePath, source, resolver, handlers) => require(\'react-docgen\').parse(source, resolver, handlers)'
+      ? "require('react-docgen-typescript').withDefaultConfig({ propFilter: { skipPropsWithoutDoc: true } }).parse"
+      : "(filePath, source, resolver, handlers) => require('react-docgen').parse(source, resolver, handlers)"
   },
   moduleAliases: {
 		'rsg-example': path.resolve(__dirname, 'src'),

@@ -21,7 +21,7 @@ const tpl =
   ]\${stylelint || prettier ? ',' : ''}\` : ''}
   \${stylelint || prettier ? \`"src/**/*.{css,scss,sass,less}": [
     \${stylelint ? \`"\${script_stylelint_fix}"\${prettier ? ',' : ''}\` : ''}
-    \${prettier ? \`",\${script_prettier_fix}"\` : ''}
+    \${prettier ? \`"\${script_prettier_fix}"\` : ''}
   ]\` : ''}
 },
 \``;
