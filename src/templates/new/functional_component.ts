@@ -1,28 +1,28 @@
-import { STYLE } from '@omni-door/utils';
+import { tpl_engine_new } from '@omni-door/utils';
 
-export default function (config: {
-  ts: boolean;
-  componentName: string;
-  style: STYLE;
-}) {
-  const { ts, componentName, style } = config;
+const tpl = 
+`\`import React, { memo\${ts ? ', FC ' : ''}} from 'react';
+\${style ? \`import './style/\${componentName}.\${style === 'all' ? 'less' : style}';\` : ''}
 
-  return `import React, { memo${ts ? ', FC ' : ''}} from 'react';
-${style ? `import './style/${componentName}.${style === 'all' ? 'less' : style}';` : ''}
+\${ts ? \`export interface \${componentName}Props {}\` : ''}
 
-${ts ? `export interface ${componentName}Props {}` : ''}
-
-export const ${componentName}${ts ? `: FC<${componentName}Props>` : ''} = props => {
+export const \${componentName}\${ts ? \`: FC<\${componentName}Props>\` : ''} = props => {
   const { children } = props;
 
   return (
     <div
-      className='${componentName}'
+      className='\${componentName}'
     >
       { children }
     </div>
   );
 };
 
-export default memo(${componentName});`;
-}
+export default memo(\${componentName});
+\``
+
+export const tpl_new_functional = {
+  tpl
+};
+
+export default tpl_engine_new(tpl_new_functional, 'tpl');

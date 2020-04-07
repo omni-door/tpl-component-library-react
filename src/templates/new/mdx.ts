@@ -1,24 +1,28 @@
-export default function (config: {
-  componentName: string;
-}) {
-  const { componentName } = config;
+import { tpl_engine_new } from '@omni-door/utils';
 
-  return `---
-name: ${componentName}
-route: /${componentName}
+const tpl = 
+`\`---
+name: \${componentName}
+route: /\${componentName}
 ---
 import { Playground, Props } from 'docz';
-import ${componentName} from './';
+import \${componentName} from './';
 
-# ${componentName} 组件
+# \${componentName} 组件
 
-<Props of={${componentName}} />
+<Props of={\${componentName}} />
 
 ## Demo
 
 <Playground>
 
-  <${componentName} />
+  <\${componentName} />
 
-</Playground>`;
-}
+</Playground>
+\``
+
+export const tpl_new_mdx = {
+  tpl
+};
+
+export default tpl_engine_new(tpl_new_mdx, 'tpl');

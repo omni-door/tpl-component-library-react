@@ -1,13 +1,11 @@
-export default function (config: {
-  componentName: string;
-}) {
-  const { componentName } = config;
+import { tpl_engine_new } from '@omni-door/utils';
 
-  return `import * as React from 'react';
+const tpl = 
+`\`import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import ${componentName} from '../index';
+import \${componentName} from '../index';
 
-storiesOf('${componentName}', module)
+storiesOf('\${componentName}', module)
   .addParameters({
     readme: {
       sidebar: require('../README.md').default,
@@ -15,6 +13,11 @@ storiesOf('${componentName}', module)
       codeTheme: 'github'
     },
   })
-  .add('with text', () => <${componentName}>Hello ${componentName}</${componentName}>);
-`;
-}
+  .add('with text', () => <\${componentName}>Hello \${componentName}</\${componentName}>);
+\``
+
+export const tpl_new_story = {
+  tpl
+};
+
+export default tpl_engine_new(tpl_new_story, 'tpl');

@@ -1,13 +1,13 @@
-import { STYLE } from '@omni-door/utils';
+import { tpl_engine_init } from '@omni-door/utils';
 
-export default function (config: {
-  style: STYLE;
-}) {
-  const { style } = config;
+const tpl = 
+`\`declare module '*.css';
 
-  return style ? `declare module '*.less';
+declare module '*.less';
 
 declare module '*.scss';
+
+declare module '*.sass';
 
 declare module '*.svg';
 
@@ -23,18 +23,10 @@ declare module '*.md' {
   const content: string;
   export default content;
 }
-` : `declare module '*.svg';
+\``
 
-declare module '*.png';
+export const tpl_src_declaration = {
+  tpl
+};
 
-declare module '*.jpg';
-
-declare module '*.jpeg';
-
-declare module '*.gif';
-
-declare module '*.md' {
-  const content: string;
-  export default content;
-}`;
-}
+export default tpl_engine_init(tpl_src_declaration, 'tpl');

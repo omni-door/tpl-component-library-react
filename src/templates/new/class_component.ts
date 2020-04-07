@@ -1,26 +1,20 @@
-import { STYLE } from '@omni-door/utils';
+import { tpl_engine_new } from '@omni-door/utils';
 
-export default function (config: {
-  ts: boolean;
-  componentName: string;
-  style: STYLE;
-}) {
-  const { ts, componentName, style } = config;
+const tpl = 
+`\`import React, { PureComponent } from 'react';
+\${style ? \`import './style/\${componentName}.\${style === 'all' ? 'less' : style}';\` : ''}
 
-  return `import React, { PureComponent } from 'react';
-${style ? `import './style/${componentName}.${style === 'all' ? 'less' : style}';` : ''}
+\${ts ? \`export interface \${componentName}Props {}
 
-${ts ? `export interface ${componentName}Props {}
+export interface \${componentName}States {}\` : ''}
 
-export interface ${componentName}States {}` : ''}
-
-export class ${componentName} extends PureComponent${ts ? `<${componentName}Props, ${componentName}States>` : ''} {
-  ${ts ? 'public ' : ''}render() {
+export class \${componentName} extends PureComponent\${ts ? \`<\${componentName}Props, \${componentName}States>\` : ''} {
+  \${ts ? 'public ' : ''}render() {
     const { children } = this.props;
 
     return (
       <div
-        className='${componentName}'
+        className='\${componentName}'
       >
         { children }
       </div>
@@ -28,6 +22,11 @@ export class ${componentName} extends PureComponent${ts ? `<${componentName}Prop
   }
 }
 
-export default ${componentName};`;
-}
+export default \${componentName};
+\``
 
+export const tpl_new_class = {
+  tpl
+};
+
+export default tpl_engine_new(tpl_new_class, 'tpl');

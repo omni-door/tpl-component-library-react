@@ -49,12 +49,45 @@ import {
   component_test,
   component_mdx,
   component_stories,
-  TPLS_INITIAL,
+  TPLS_ORIGIN_INITIAL,
   TPLS_INITIAL_FN,
   TPLS_INITIAL_RETURE,
-  TPLS_NEW,
+  TPLS_ORIGIN_NEW,
   TPLS_NEW_FN,
-  TPLS_NEW_RETURE
+  TPLS_NEW_RETURE,
+  tpl_babel,
+  tpl_bisheng,
+  tpl_bisheng_posts,
+  tpl_commitlint,
+  tpl_docz,
+  tpl_docz_mdx,
+  tpl_eslint,
+  tpl_gatsby,
+  tpl_ignore_eslint,
+  tpl_ignore_git,
+  tpl_ignore_npm,
+  tpl_jest,
+  tpl_new_class,
+  tpl_new_functional,
+  tpl_new_index,
+  tpl_new_mdx,
+  tpl_new_readme,
+  tpl_new_story,
+  tpl_new_stylesheet,
+  tpl_new_test,
+  tpl_omni,
+  tpl_package,
+  tpl_prettier,
+  tpl_readme,
+  tpl_src_declaration,
+  tpl_src_index,
+  tpl_storybook_addons,
+  tpl_storybook_config,
+  tpl_storybook_mhead,
+  tpl_storybook_webpack,
+  tpl_styleguidist,
+  tpl_stylelint,
+  tpl_tsconfig
 } from './templates';
 import { dependencies, devDependencies } from './configs/dependencies';
 import { devDependencies as devDependencyMap } from './configs/dependencies_stable_map';
@@ -86,15 +119,35 @@ const default_tpl_list = {
   gatsby,
   bisheng,
   posts_readme,
-  mdx,
-  component_class,
-  component_functional,
-  component_index,
-  component_readme,
-  component_stylesheet,
-  component_test,
-  component_mdx,
-  component_stories
+  mdx
+};
+
+const origin_tpl_list = {
+  tpl_babel,
+  tpl_bisheng,
+  tpl_bisheng_posts,
+  tpl_commitlint,
+  tpl_docz,
+  tpl_docz_mdx,
+  tpl_eslint,
+  tpl_gatsby,
+  tpl_ignore_eslint,
+  tpl_ignore_git,
+  tpl_ignore_npm,
+  tpl_jest,
+  tpl_omni,
+  tpl_package,
+  tpl_prettier,
+  tpl_readme,
+  tpl_src_declaration,
+  tpl_src_index,
+  tpl_storybook_addons,
+  tpl_storybook_config,
+  tpl_storybook_mhead,
+  tpl_storybook_webpack,
+  tpl_styleguidist,
+  tpl_stylelint,
+  tpl_tsconfig
 };
 
 export type ResultOfDependencies = string[] | { add?: string[]; remove?: string[]; };
@@ -114,7 +167,7 @@ export type InitOptions = {
   stylelint: boolean;
   pkgtool?: PKJTOOL;
   isSlient?: boolean;
-  tpls?: (tpls: TPLS_INITIAL) => TPLS_INITIAL_RETURE;
+  tpls?: (tpls: TPLS_ORIGIN_INITIAL) => TPLS_INITIAL_RETURE;
   dependencies?: (dependecies_default: string[]) => ResultOfDependencies;
   devDependencies?: (devDependecies_default: string[]) => ResultOfDependencies;
   error?: (err: any) => any;
@@ -123,7 +176,7 @@ export type InitOptions = {
 
 async function init ({
   strategy = 'stable',
-  projectName: name,
+  projectName: project_name,
   initPath,
   configFileName = 'omni.config.js',
   devServer,
@@ -150,7 +203,7 @@ async function init ({
   let custom_tpl_list = {};
   try {
     custom_tpl_list = typeof tpls === 'function'
-      ? tpls(default_tpl_list)
+      ? tpls(origin_tpl_list)
       : custom_tpl_list;
 
     for (const tpl_name in custom_tpl_list) {
@@ -175,62 +228,45 @@ async function init ({
     logWarn('生成自定义模板出错，将全部使用默认模板进行初始化！(The custom template generating occured error, all will be initializated with the default template!)');
   }
   const tpl = { ...default_tpl_list, ...custom_tpl_list };
-  const project_type = 'component-library-react';
+  const project_type = 'component-library-react' as 'component-library-react';
   logTime('模板解析', true);
 
   // 生成项目文件
   logTime('生成文件');
+  const params = { project_type, project_name, ts, test, eslint, prettier, commitlint, style, stylelint, strategy, configFileName };
   const pathToFileContentMap = {
     // default files
-    [`${configFileName}`]: tpl.omni({
-      project_type,
-      ts,
-      test,
-      eslint,
-      prettier,
-      commitlint,
-      style,
-      stylelint,
-      mdx: devServer === 'docz'
-    }),
+    [`${configFileName}`]: tpl.omni(devServer === 'docz')(params),
     'package.json': tpl.pkj({
-      project_type,
-      name,
-      ts,
-      devServer,
-      test,
-      eslint,
-      prettier,
-      commitlint,
-      stylelint,
-      strategy,
-      type_react: devDependencyMap['@types/react']
-    }),
-    '.gitignore': tpl.gitignore(),
-    '.npmignore': tpl.npmignore(),
-    [`src/components/index.${ts ? 'ts' : 'js'}`]: tpl.source_index(),
-    'src/@types/global.d.ts': ts && tpl.source_d({ style }), // d.ts files
-    'tsconfig.json': ts && tpl.tsconfig(), // tsconfig
-    'jest.config.js': test && tpl.jest({ ts }), // test files
+      type_react: devDependencyMap['@types/react'],
+      project_name,
+      devServer
+    })(params),
+    '.gitignore': tpl.gitignore(params),
+    '.npmignore': tpl.npmignore(params),
+    [`src/components/index.${ts ? 'ts' : 'js'}`]: tpl.source_index(params),
+    'src/@types/global.d.ts': ts && tpl.source_d(params), // d.ts files
+    'tsconfig.json': ts && tpl.tsconfig(params), // tsconfig
+    'jest.config.js': test && tpl.jest(params), // test files
     // lint files
-    '.eslintrc.js': eslint && tpl.eslint({ ts, prettier }),
-    '.eslintignore': eslint && tpl.eslintignore(),
-    'prettier.config.js': prettier && tpl.prettier(),
-    'stylelint.config.js': stylelint && tpl.stylelint({ style }),
-    'commitlint.config.js': commitlint && tpl.commitlint({ name }),
-    'babel.config.js': (devServer === 'storybook' || devServer === 'styleguidist') && tpl.babel({ ts }), // build file
-    'README.md': tpl.readme({ name, configFileName }), // ReadMe
+    '.eslintrc.js': eslint && tpl.eslint(params),
+    '.eslintignore': eslint && tpl.eslintignore(params),
+    'prettier.config.js': prettier && tpl.prettier(params),
+    'stylelint.config.js': stylelint && tpl.stylelint(params),
+    'commitlint.config.js': commitlint && tpl.commitlint(params),
+    'babel.config.js': (devServer === 'storybook' || devServer === 'styleguidist') && tpl.babel(params), // build file
+    'README.md': tpl.readme(params), // ReadMe
     // server files
-    'src/index.mdx': devServer === 'docz' && tpl.mdx({ name }),
-    'bisheng.config.js': devServer === 'bisheng' && tpl.bisheng({ name }),
-    'posts/README.md': devServer === 'bisheng' && tpl.posts_readme(),
-    '.storybook/addons.js': devServer === 'storybook' && tpl.storybook_addons(),
-    '.storybook/config.js': devServer === 'storybook' && tpl.storybook_config({ name }),
-    '.storybook/manager-head.html': devServer === 'storybook' && tpl.storybook_mhead({ name }),
-    '.storybook/webpack.config.js': devServer === 'storybook' && tpl.storybook_webpack({ ts, style }),
-    'doczrc.js': devServer === 'docz' && tpl.doczrc({ name, ts }),
-    'gatsby-config.js': devServer === 'docz' && tpl.gatsby({ style }),
-    'styleguide.config.js': devServer === 'styleguidist' && tpl.styleguidist({ ts, style })
+    'src/index.mdx': devServer === 'docz' && tpl.mdx(params),
+    'bisheng.config.js': devServer === 'bisheng' && tpl.bisheng(params),
+    'posts/README.md': devServer === 'bisheng' && tpl.posts_readme()(params),
+    '.storybook/addons.js': devServer === 'storybook' && tpl.storybook_addons(params),
+    '.storybook/config.js': devServer === 'storybook' && tpl.storybook_config(params),
+    '.storybook/manager-head.html': devServer === 'storybook' && tpl.storybook_mhead(params),
+    '.storybook/webpack.config.js': devServer === 'storybook' && tpl.storybook_webpack(params),
+    'doczrc.js': devServer === 'docz' && tpl.doczrc(params),
+    'gatsby-config.js': devServer === 'docz' && tpl.gatsby(params),
+    'styleguide.config.js': devServer === 'styleguidist' && tpl.styleguidist(params)
   }
   /**
    * create files
@@ -362,6 +398,28 @@ async function init ({
   }, error, isSlient);
 }
 
+const default_tpl_new_list = {
+  component_class,
+  component_functional,
+  component_index,
+  component_readme,
+  component_stylesheet,
+  component_test,
+  component_mdx,
+  component_stories
+};
+
+const origin_tpl_new_list = {
+  tpl_new_class,
+  tpl_new_functional,
+  tpl_new_index,
+  tpl_new_mdx,
+  tpl_new_readme,
+  tpl_new_story,
+  tpl_new_stylesheet,
+  tpl_new_test
+};
+
 export function newTpl ({
   ts,
   test,
@@ -381,19 +439,19 @@ export function newTpl ({
   md: MARKDOWN;
   type: 'fc' | 'cc';
   hasStorybook: boolean;
-  tpls?: (tpls: TPLS_NEW) => TPLS_NEW_RETURE;
+  tpls?: (tpls: TPLS_ORIGIN_NEW) => TPLS_NEW_RETURE;
 }) {
   logTime('创建组件');
   logInfo(`开始创建 ${componentName} ${type === 'cc' ? '类' : '函数'}组件 (Start create ${componentName} ${type === 'cc' ? 'class' : 'functional'} component)`);
-  let custom_tpl_list = {};
+  let custom_tpl_new_list = {};
   try {
-    custom_tpl_list = typeof tpls === 'function'
-      ? tpls(default_tpl_list)
-      : custom_tpl_list;
+    custom_tpl_new_list = typeof tpls === 'function'
+      ? tpls(origin_tpl_new_list)
+      : custom_tpl_new_list;
 
-    for (const tpl_name in custom_tpl_list) {
+    for (const tpl_name in custom_tpl_new_list) {
       const name = tpl_name as keyof TPLS_NEW_RETURE;
-      const list = custom_tpl_list as TPLS_NEW_RETURE;
+      const list = custom_tpl_new_list as TPLS_NEW_RETURE;
       const tpl = list[name];
       const tplFactory = (config: any) => {
         try {
@@ -403,7 +461,7 @@ export function newTpl ({
           logWarn(`自定义模板 [${name}] 解析出错，将使用默认模板进行创建组件！(The custom template [${name}] parsing occured error, the default template will be used for initialization!)`);    
         }
 
-        return default_tpl_list[name](config);
+        return default_tpl_new_list[name](config);
       };
 
       (list[name] as TPLS_NEW_FN) = tplFactory as TPLS_NEW_FN;
@@ -412,16 +470,23 @@ export function newTpl ({
     logWarn(JSON.stringify(err_tpls));
     logWarn('生成自定义模板出错，将全部使用默认模板进行创建组件！(The custom template generating occured error, all will be initializated with the default template!)');
   }
-  const tpl = { ...default_tpl_list, ...custom_tpl_list };
+  const tpl = { ...default_tpl_new_list, ...custom_tpl_new_list };
+  const params = {
+    ts,
+    test,
+    componentName,
+    style: stylesheet,
+    md
+  };
   // component tpl
-  const content_index = tpl.component_index({ ts, componentName });
-  const content_cc = type === 'cc' && tpl.component_class({ ts, componentName, style: stylesheet });
-  const content_fc = type === 'fc' && tpl.component_functional({ ts, componentName, style: stylesheet });
-  const content_readme = md === 'md' && tpl.component_readme({ componentName, ts });
-  const content_mdx = md === 'mdx' && tpl.component_mdx({ componentName });
-  const content_stories = hasStorybook && tpl.component_stories({ componentName });
-  const content_style = stylesheet && tpl.component_stylesheet({ componentName });
-  const content_test = test && tpl.component_test({ componentName });
+  const content_index = tpl.component_index(params);
+  const content_cc = type === 'cc' && tpl.component_class(params);
+  const content_fc = type === 'fc' && tpl.component_functional(params);
+  const content_readme = md === 'md' && tpl.component_readme(params);
+  const content_mdx = md === 'mdx' && tpl.component_mdx(params);
+  const content_stories = hasStorybook && tpl.component_stories(params);
+  const content_style = stylesheet && tpl.component_stylesheet(params);
+  const content_test = test && tpl.component_test(params);
 
   const pathToFileContentMap = {
     [`index.${ts ? 'ts' : 'js'}`]: content_index,
