@@ -23,7 +23,7 @@ export class \${componentName} extends PureComponent\${ts ? \`<\${componentName}
 }
 
 export default \${componentName};
-\``
+\``;
 
 export const tpl_new_class = {
   tpl

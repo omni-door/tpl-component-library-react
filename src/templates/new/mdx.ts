@@ -19,7 +19,7 @@ import \${componentName} from './';
   <\${componentName} />
 
 </Playground>
-\``
+\``;
 
 export const tpl_new_mdx = {
   tpl

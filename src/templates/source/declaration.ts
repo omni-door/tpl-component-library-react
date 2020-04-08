@@ -23,7 +23,7 @@ declare module '*.md' {
   const content: string;
   export default content;
 }
-\``
+\``;
 
 export const tpl_src_declaration = {
   tpl

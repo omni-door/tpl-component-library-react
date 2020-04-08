@@ -19,7 +19,7 @@ export const \${componentName}\${ts ? \`: FC<\${componentName}Props>\` : ''} = p
 };
 
 export default memo(\${componentName});
-\``
+\``;
 
 export const tpl_new_functional = {
   tpl

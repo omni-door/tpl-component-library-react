@@ -14,7 +14,7 @@ var observer = new MutationObserver(function(mutations) {
   characterData: true
 });
 </script>
-\``
+\``;
 
 export const tpl_storybook_mhead = {
   tpl

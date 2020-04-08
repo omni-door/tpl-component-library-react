@@ -19,7 +19,7 @@ module.exports = {
     })}
   ]
 };
-\``
+\``;
 
 export const tpl_gatsby = {
   tpl,

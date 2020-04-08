@@ -17,7 +17,7 @@ module.exports = {
   },
   plugins: ['bisheng-plugin-react?lang=jsx']
 };
-\``
+\``;
 
 export const tpl_bisheng = {
   tpl

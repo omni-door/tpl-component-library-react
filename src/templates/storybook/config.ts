@@ -18,7 +18,7 @@ function loadStories() {
   keys.forEach(filename => req(filename));
 };
 configure(loadStories, module);
-\``
+\``;
 
 export const tpl_storybook_config = {
   tpl

@@ -77,7 +77,7 @@ const tpl =
     "*.js"
   ]
 }
-\``
+\``;
 
 export const tpl_tsconfig = {
   tpl

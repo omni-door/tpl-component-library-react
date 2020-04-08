@@ -4,7 +4,7 @@ const tpl =
 `\`.\${componentName} {
   display: block;
 }
-\``
+\``;
 
 export const tpl_new_stylesheet = {
   tpl

@@ -14,7 +14,7 @@ module.exports = {
   arrowParens: 'avoid',
   rangeEnd: 0
 };
-\``
+\``;
 
 export const tpl_prettier = {
   tpl

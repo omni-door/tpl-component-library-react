@@ -44,7 +44,7 @@ module.exports = {
     extensions: [\${ts ? '".ts", ".tsx", ' : ''}".js", ".jsx", ".md", \${style ? (style === 'css' ? '".css"' : (style === 'less' ? '".less", ".css"' : '".scss", ".css", ".sass"')) : ''}]
   }
 };
-\``
+\``;
 
 export const tpl_storybook_webpack = {
   tpl,

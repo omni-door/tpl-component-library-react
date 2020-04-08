@@ -8,7 +8,7 @@ const tpl =
 \\\`\\\`\\\`\${ts ? 'tsx' : 'jsx'}
 <\${componentName} />
 \\\`\\\`\\\`
-\``
+\``;
 
 export const tpl_new_readme = {
   tpl

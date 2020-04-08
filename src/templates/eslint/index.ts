@@ -45,7 +45,7 @@ module.exports = {
     'linebreak-style': ['warn', 'unix']\${alter('prettier', 'rules_prettier')}
   }
 };
-\``
+\``;
 
 export const tpl_eslint = {
   tpl,

@@ -48,7 +48,7 @@ module.exports = {
     }
   }
 };
-\``
+\``;
 
 export const tpl_styleguidist = {
   tpl,

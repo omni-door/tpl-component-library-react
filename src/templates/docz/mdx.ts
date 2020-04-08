@@ -10,7 +10,7 @@ route: /
 ## 导航
 | 组件(Component) | 开发/维护(Developer/Maintainer) |
 | --- | --- |
-\``
+\``;
 
 export const tpl_docz_mdx = {
   tpl

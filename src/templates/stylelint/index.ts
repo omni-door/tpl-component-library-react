@@ -21,7 +21,7 @@ module.exports = {
 		"plugin/declaration-block-no-ignored-properties": true
 	}
 };
-\``
+\``;
 
 export const tpl_stylelint = {
   tpl,

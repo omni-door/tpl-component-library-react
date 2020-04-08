@@ -509,7 +509,7 @@ export function newTpl ({
     }`]: content_stories,
     'README.md': content_readme,
     'README.mdx': content_mdx,
-  }
+  };
   /**
    * create files
    */

@@ -10,7 +10,7 @@ module.exports = {
   files: '**/*.{md,markdown,mdx}',
   port: 6200
 };
-\``
+\``;
 
 export const tpl_docz = {
   tpl

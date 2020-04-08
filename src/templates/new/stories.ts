@@ -14,7 +14,7 @@ storiesOf('\${componentName}', module)
     },
   })
   .add('with text', () => <\${componentName}>Hello \${componentName}</\${componentName}>);
-\``
+\``;
 
 export const tpl_new_story = {
   tpl

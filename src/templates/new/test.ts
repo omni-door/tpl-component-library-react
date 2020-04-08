@@ -16,7 +16,7 @@ describe('\${componentName}', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });
-\``
+\``;
 
 export const tpl_new_test = {
   tpl

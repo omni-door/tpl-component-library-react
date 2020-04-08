@@ -44,7 +44,7 @@ const Configuration = {
 };
 
 module.exports = Configuration;
-\``
+\``;
 
 export const tpl_commitlint = {
   tpl
