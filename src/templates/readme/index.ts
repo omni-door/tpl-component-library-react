@@ -57,7 +57,7 @@ npm run release -- -m 0.3.25
 npm run release -- -n
 \\\`\\\`\\\`
 
-**More powerful customizations is in [\${configFileName}]**
+**More powerful customizations is in [\${configFileName}](https://github.com/omni-door/cli/blob/master/docs/OMNI.md)**
 \``
 
 export const tpl_readme = {

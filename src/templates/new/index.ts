@@ -1,9 +1,9 @@
 import { tpl_engine_new } from '@omni-door/utils';
 
 const tpl = 
-`\`import \${componentName} from './\${componentName}';
+`\`import * as \${componentName} from './\${componentName}';
 
-export { \${componentName}\${ts ? \`, \${componentName}Props\` : ''} } from './\${componentName}';
+export { \${componentName} } from './\${componentName}';
 export default \${componentName};
 \``
 
