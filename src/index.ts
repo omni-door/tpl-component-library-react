@@ -94,7 +94,7 @@ import {
 import { dependencies, devDependencies } from './configs/dependencies';
 import { devDependencies as devDependencyMap } from './configs/dependencies_stable_map';
 export { setBrand, setLogo } from '@omni-door/utils';
-export { TPLS_INITIAL, TPLS_INITIAL_FN, TPLS_INITIAL_RETURE, TPLS_NEW, TPLS_NEW_FN, TPLS_NEW_RETURE } from './templates';
+export { TPLS_ORIGIN_INITIAL, TPLS_INITIAL_FN, TPLS_INITIAL_RETURE, TPLS_ORIGIN_NEW, TPLS_NEW_FN, TPLS_NEW_RETURE } from './templates';
 
 const default_tpl_list = {
   babel,
