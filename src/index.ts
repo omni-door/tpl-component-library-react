@@ -140,7 +140,7 @@ async function init ({
       (list[name] as TPLS_INITIAL_FN) = tplFactory(list[name], default_tpl_list[name]) as TPLS_INITIAL_FN;
     }
   } catch (err_tpls) {
-    logWarn(JSON.stringify(err_tpls));
+    logWarn(err_tpls);
     logWarn('生成自定义模板出错，将全部使用默认模板进行初始化！(The custom template generating occured error, all will be initializated with the default template!)');
   }
   const tpl = { ...default_tpl_list, ...custom_tpl_list };
@@ -374,7 +374,7 @@ export function newTpl ({
         try {
           return tpl && tpl(config);
         } catch (err) {
-          logWarn(JSON.stringify(err));
+          logWarn(err);
           logWarn(`自定义模板 [${name}] 解析出错，将使用默认模板进行创建组件！(The custom template [${name}] parsing occured error, the default template will be used for initialization!)`);    
         }
 
@@ -384,7 +384,7 @@ export function newTpl ({
       (list[name] as TPLS_NEW_FN) = tplFactory as TPLS_NEW_FN;
     }
   } catch (err_tpls) {
-    logWarn(JSON.stringify(err_tpls));
+    logWarn(err_tpls);
     logWarn('生成自定义模板出错，将全部使用默认模板进行创建组件！(The custom template generating occured error, all will be initializated with the default template!)');
   }
   const tpl = { ...default_tpl_new_list, ...custom_tpl_new_list };
