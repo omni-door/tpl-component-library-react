@@ -6,7 +6,7 @@ name: \${componentName}
 route: /\${componentName}
 ---
 import { Playground, Props } from 'docz';
-import \${componentName} from './';
+import { \${componentName} } from './index';
 
 # \${componentName} 组件
 

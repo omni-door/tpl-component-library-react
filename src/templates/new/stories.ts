@@ -3,7 +3,7 @@ import { tpl_engine_new } from '@omni-door/utils';
 const tpl = 
 `\`import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import \${componentName} from '../index';
+import { \${componentName} } from '../index';
 
 storiesOf('\${componentName}', module)
   .addParameters({
