@@ -16,32 +16,22 @@ import {
   MARKDOWN
 } from '@omni-door/utils';
 import {
-  babel,
-  commitlint,
-  eslint,
-  eslintignore,
-  gitignore,
-  jest,
-  npmignore,
-  prettierignore,
-  omni,
-  pkj,
-  prettier,
-  readme,
-  stylelint,
-  styleguidist,
-  tsconfig,
-  source_index,
-  source_d,
-  storybook_addons,
-  storybook_config,
-  storybook_mhead,
-  storybook_webpack,
-  doczrc,
-  gatsby,
-  bisheng,
-  posts_readme,
-  mdx,
+  TPLS_INITIAL,
+  TPLS_ORIGIN_INITIAL,
+  TPLS_INITIAL_FN,
+  TPLS_INITIAL_RETURE,
+  TPLS_ORIGIN_NEW,
+  TPLS_NEW_FN,
+  TPLS_NEW_RETURE,
+  tpls,
+  tpls_origin
+} from './templates';
+import { dependencies, devDependencies } from './configs/dependencies';
+import { devDependencies as devDependencyMap } from './configs/dependencies_stable_map';
+export { setBrand, setLogo } from '@omni-door/utils';
+export { TPLS_ORIGIN_INITIAL, TPLS_INITIAL_FN, TPLS_INITIAL_RETURE, TPLS_ORIGIN_NEW, TPLS_NEW_FN, TPLS_NEW_RETURE } from './templates';
+
+const {
   component_class,
   component_functional,
   component_index,
@@ -50,25 +40,10 @@ import {
   component_test,
   component_mdx,
   component_stories,
-  TPLS_ORIGIN_INITIAL,
-  TPLS_INITIAL_FN,
-  TPLS_INITIAL_RETURE,
-  TPLS_ORIGIN_NEW,
-  TPLS_NEW_FN,
-  TPLS_NEW_RETURE,
-  tpl_babel,
-  tpl_bisheng,
-  tpl_bisheng_posts,
-  tpl_commitlint,
-  tpl_docz,
-  tpl_docz_mdx,
-  tpl_eslint,
-  tpl_gatsby,
-  tpl_ignore_eslint,
-  tpl_ignore_git,
-  tpl_ignore_npm,
-  tpl_ignore_prettier,
-  tpl_jest,
+  ...default_tpl_list
+} = tpls;
+
+const {
   tpl_new_class,
   tpl_new_functional,
   tpl_new_index,
@@ -77,82 +52,8 @@ import {
   tpl_new_story,
   tpl_new_stylesheet,
   tpl_new_test,
-  tpl_omni,
-  tpl_package,
-  tpl_prettier,
-  tpl_readme,
-  tpl_src_declaration,
-  tpl_src_index,
-  tpl_storybook_addons,
-  tpl_storybook_config,
-  tpl_storybook_mhead,
-  tpl_storybook_webpack,
-  tpl_styleguidist,
-  tpl_stylelint,
-  tpl_tsconfig
-} from './templates';
-import { dependencies, devDependencies } from './configs/dependencies';
-import { devDependencies as devDependencyMap } from './configs/dependencies_stable_map';
-export { setBrand, setLogo } from '@omni-door/utils';
-export { TPLS_ORIGIN_INITIAL, TPLS_INITIAL_FN, TPLS_INITIAL_RETURE, TPLS_ORIGIN_NEW, TPLS_NEW_FN, TPLS_NEW_RETURE } from './templates';
-
-const default_tpl_list = {
-  babel,
-  commitlint,
-  eslint,
-  eslintignore,
-  gitignore,
-  jest,
-  npmignore,
-  prettierignore,
-  omni,
-  pkj,
-  prettier,
-  readme,
-  stylelint,
-  styleguidist,
-  tsconfig,
-  source_index,
-  source_d,
-  storybook_addons,
-  storybook_config,
-  storybook_mhead,
-  storybook_webpack,
-  doczrc,
-  gatsby,
-  bisheng,
-  posts_readme,
-  mdx
-};
-
-const origin_tpl_list = {
-  tpl_babel,
-  tpl_bisheng,
-  tpl_bisheng_posts,
-  tpl_commitlint,
-  tpl_docz,
-  tpl_docz_mdx,
-  tpl_eslint,
-  tpl_gatsby,
-  tpl_ignore_eslint,
-  tpl_ignore_git,
-  tpl_ignore_npm,
-  tpl_ignore_prettier,
-  tpl_jest,
-  tpl_omni,
-  tpl_package,
-  tpl_prettier,
-  tpl_readme,
-  tpl_src_declaration,
-  tpl_src_index,
-  tpl_storybook_addons,
-  tpl_storybook_config,
-  tpl_storybook_mhead,
-  tpl_storybook_webpack,
-  tpl_styleguidist,
-  tpl_stylelint,
-  tpl_tsconfig
-};
+  ...origin_tpl_list
+} = tpls_origin;
 
 export type ResultOfDependencies = string[] | { add?: string[]; remove?: string[]; };
 
@@ -213,19 +114,30 @@ async function init ({
     for (const tpl_name in custom_tpl_list) {
       const name = tpl_name as keyof TPLS_INITIAL_RETURE;
       const list = custom_tpl_list as TPLS_INITIAL_RETURE;
-      const tpl = list[name];
-      const tplFactory = (config: any) => {
-        try {
-          return tpl && tpl(config);
-        } catch (err) {
-          logWarn(JSON.stringify(err));
-          logWarn(`自定义模板 [${name}] 解析出错，将使用默认模板进行初始化！(The custom template [${name}] parsing occured error, the default template will be used for initialization!)`);    
-        }
-
-        return default_tpl_list[name](config);
+      type CustomTpl = TPLS_INITIAL_RETURE[keyof TPLS_INITIAL_RETURE];
+      type OriginTpl = TPLS_INITIAL[keyof TPLS_INITIAL];
+      const tplFactory = (customTpl: CustomTpl, originTpl: OriginTpl) => {
+        return function (config: any) {
+          try {
+            const result = customTpl && customTpl(config);
+            if (typeof result === 'function') {
+              // call originTpl here is resolving the address reference bug
+              // because call the originTpl will affect the origin_tpl_list's tpl
+              const originResult = originTpl(config);
+              if (typeof originResult === 'function') {
+                return tplFactory(result, originResult);
+              }
+            }
+            return result;
+          } catch (err) {
+            logWarn(err);
+            logWarn(`自定义模板 [${name}] 解析出错，将使用默认模板进行初始化！(The custom template [${name}] parsing occured error, the default template will be used for initialization!)`);
+            return originTpl(config);
+          }
+        };
       };
 
-      (list[name] as TPLS_INITIAL_FN) = tplFactory as TPLS_INITIAL_FN;
+      (list[name] as TPLS_INITIAL_FN) = tplFactory(list[name], default_tpl_list[name]) as TPLS_INITIAL_FN;
     }
   } catch (err_tpls) {
     logWarn(JSON.stringify(err_tpls));

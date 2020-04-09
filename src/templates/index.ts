@@ -68,7 +68,7 @@ export { default as component_test, tpl_new_test } from './new/test';
 export { default as component_mdx, tpl_new_mdx } from './new/mdx';
 export { default as component_stories, tpl_new_story } from './new/stories';
 
-const tpls = {
+export const tpls = {
   babel,
   commitlint,
   eslint,
