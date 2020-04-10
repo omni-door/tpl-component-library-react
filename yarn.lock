@@ -134,10 +134,10 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
 
-"@omni-door/utils@^0.1.9":
-  version "0.1.9"
-  resolved "https://registry.npmjs.org/@omni-door/utils/-/utils-0.1.9.tgz#a1bc72157b154ba2aeef96df2750dc3b604a43a3"
-  integrity sha512-zY3CdHQyNl6VL45nxjivwd0ZEnqCACjnfqBf8ApnQUDFYJdNG1ccx9Utmtk4zdvcIhrl0LT0lWVYhHjKDx2Pcw==
+"@omni-door/utils@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.npmjs.org/@omni-door/utils/-/utils-0.1.10.tgz#4bf0255e43cb0825667fd26c2aa73a3435b3c26c"
+  integrity sha512-oqJCpK1AOEIqid9PHjcod04iuZLN3YLZJq9QSTnpmfONSVWdUOBlK4Q6sRc55vrgaOWSJtpSZjj2QJjNCpt1eQ==
   dependencies:
     "@types/signale" "^1.2.1"
     chalk "^3.0.0"
