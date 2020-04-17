@@ -16,7 +16,6 @@ if (args.length > 0) {
       componentName: 'Omni',
       stylesheet: 'scss' as STYLE,
       newPath: process.cwd(),
-      md: 'md' as MARKDOWN,
       hasStorybook: false,
       type: 'fc' as 'fc'
     };

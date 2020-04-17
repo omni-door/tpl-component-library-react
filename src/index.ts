@@ -353,7 +353,7 @@ export function newTpl ({
   componentName: string;
   stylesheet: STYLE;
   newPath: string;
-  md: MARKDOWN;
+  md?: MARKDOWN;
   type: 'fc' | 'cc';
   hasStorybook: boolean;
   tpls?: (tpls: TPLS_ORIGIN_NEW) => TPLS_NEW_RETURE;
