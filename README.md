@@ -16,66 +16,22 @@ The React component-library-react project template
 * Install with [Yarn](https://yarnpkg.com/en/package/@omni-door/tpl-component-library-react): `yarn add @omni-door/tpl-component-library-react`
 
 ## Templates
-- babel => babel.config.js
-
-- commitlint => commitlint.config.js
-
-- eslint => .eslintrc.js
-
-- eslintignore => .eslintignore
-
-- gitignore => .gitignore
-
-- jest => jest.config.js
-
-- karma => karma.config.js
-
-- mocha => mocha.opts
-
-- npmignore => .npmignore
-
-- omni => omni.config.js
-
-- pkj => package.json
-
-- readme => README.md
-
-- stylelint => stylelint.config.js
-
-- tsconfig => tsconfig.json
-
-- component_class => component/{component}/index.(jsx|tsx)
-
-- component_functional => component/{component}/index.(jsx|tsx)
-
-- component_index => component/{component}/index.(js|ts)
-
-- component_readme => component/{component}/README.md
-
-- component_stylesheet => component/{component}/style/index.(css|less|scss)
-
-- component_test => component/{component}/test/index.(jsx|tsx)
-
-- component_mdx => component/{component}/README.mdx
-
-- component_stories => component/{component}/stories/index.(jsx|tsx)
-
-- source_index => src/index.(js|ts)
-
-- source_d => src/@types/global.d.ts
-
-- storybook_addons => .storybook/addons.js
-
-- storybook_config => .storybook/config.js
-
-- storybook_mhead => .storybook/manager-head.html
-
-- storybook_webpack => .storybook/webpack.config.js
-
-- bisheng => bisheng.config.js
-
-- posts_readme => posts/README.md
-
-- doczrc => doczrc.js
-
-- mdx => README.mdx
+| folder | file |
+| --- | --- |
+| babel | babel.config.js |
+| bisheng | bisheng.config.js & posts/README.md |
+| commitlint | commitlint.config.js |
+| docz | .doczrc.js & gatsby-config.js |
+| eslint | .eslintrc.js |
+| ignore | .eslintignore & .gitignore & .npmignore & .prettierignore |
+| jest | jest.config.js |
+| new | the standard templates for `omni new` command |
+| omni | omni.config.js |
+| package | package.json |
+| prettier | prettier.config.js |
+| readme | README.md |
+| source | the standard templates in `src` folder |
+| storybook | .storybook/config.js & .storybook/addons.js & .storybook/manager-head.html & .storybook/webpack.config.js |
+| styleguidist | styleguide.config.js |
+| stylelint | stylelint.config.js |
+| tsconfig | tsconfig.json |
